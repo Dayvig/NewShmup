@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Runtime.CompilerServices;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
@@ -14,16 +15,48 @@ public class GameManager : MonoBehaviour
     public GameObject mainEnemy;
     public float xbounds;
     public float ybounds;
+    public GameObject invisibleWeapon;
+    public List<GameObject> invisibleWeaponPool = new List<GameObject>();
+    public List<WeaponBehavior> fireQueue = new List<WeaponBehavior>();
+    public GameObject livesLayout;
+    public GameObject lifeIcon;
+    public int playerLives;
 
     public Boss currentBoss;
+    public float bossHP;
+    public RectTransform BossHPBar;
+
+    public enum GameState
+    {
+        MENU,
+        GAMEPLAY
+    }
+
+    public GameState currentState;
 
     public static GameManager instance { get; private set; }
 
+    public void Update()
+    {
+        switch (currentState)
+        {
+            case GameState.GAMEPLAY:
+                player.PlayerUpdate();
+                Trash();
+                break;
+        }
+    }
+
     public void FixedUpdate()
     {
-        player.PlayerUpdate();
-        WaveFixedUpdate();
-        Trash();
+        switch (currentState)
+        {
+            case GameState.GAMEPLAY:
+                player.PlayerFixedUpdate();
+                WaveFixedUpdate();
+                currentBoss.BossFixedUpdate();
+                break;
+        }
     }
 
     private void WipeAllEnemiesAndBullets()
@@ -40,6 +73,8 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
         //player = GameObject.Find("Player").GetComponent<Player>();
+        currentState = GameState.MENU;
+        player.SetupPlayer();
     }
 
 
@@ -74,6 +109,11 @@ public class GameManager : MonoBehaviour
         {
             bullet.BulletUpdate();
         }
+        foreach (WeaponBehavior behavior in fireQueue)
+        {
+            behavior.Fire(behavior.weaponData);
+        }
+        fireQueue.Clear();
         currentBoss.BossUpdate();
     }
 

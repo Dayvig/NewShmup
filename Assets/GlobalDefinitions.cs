@@ -4,5 +4,6 @@ using UnityEngine;
 public enum WEAPON_TYPE
 {
     NONE = -1,
-    SPREADSHOT
+    SPREADSHOT,
+    PARALLELSHOT
 }

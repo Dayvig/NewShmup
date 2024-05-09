@@ -39,6 +39,13 @@ public class Player : MonoBehaviour
     public float movementRampUpTimer = 0.0f;
     private float movementSpeedPriorToRampup;
     private bool justBoosted;
+    public int currentLives;
+
+    float deathTimer = 99f;
+    bool invincible = false;
+    float deathInterval = 2f;
+    public SpriteRenderer PlayerSprite;
+    public Animator explosion;
 
     public enum MOVEMENTSTATE
     {
@@ -57,12 +64,69 @@ public class Player : MonoBehaviour
         instance = this;
     }
 
+    public void SetupPlayer()
+    {
+        for (int i = 0; i < GameManager.instance.playerLives; i++)
+        {
+            Instantiate(GameManager.instance.lifeIcon, GameManager.instance.livesLayout.transform);
+        }
+        currentLives = GameManager.instance.playerLives;
+    }
+
+    public void TakeHit()
+    {
+        if (!invincible)
+        {
+            currentLives--;
+            if (currentLives >= 0)
+            {
+                GameManager.instance.livesLayout.transform.GetChild(currentLives).gameObject.SetActive(false);
+            }
+            else
+            {
+                Application.Quit(0);
+            }
+            deathTimer = 0.0f;
+            invincible = true;
+            PlayerSprite.enabled = false;
+            explosion.gameObject.SetActive(true);
+            explosion.Play("stockexplosion");
+            StartCoroutine("hideExplosion");
+        }
+    }
+    public IEnumerator hideExplosion()
+    {
+        yield return new WaitForSeconds(1f);
+        explosion.gameObject.SetActive(false);
+        transform.position = new Vector3(0f, -3.4f, 0f);
+    }
+
     public void PlayerUpdate()
+    {
+        if (deathTimer < deathInterval * 2)
+        {
+            deathTimer += Time.deltaTime;
+            if (deathTimer > deathInterval / 2)
+            {
+                PlayerSprite.enabled = true;
+                takeInputs();
+            }
+            if (deathTimer > deathInterval)
+            {
+                invincible = false;
+            }
+        }
+        else
+        {
+            takeInputs();
+        }
+    }
+
+    public void PlayerFixedUpdate()
     {
         Vector3 currentPos = gameObject.transform.position;
         Quaternion rot = gameObject.transform.rotation;
 
-        takeInputs();
         rotationTarget = GameManager.instance.LookAtPos(currentPos, GameManager.instance.mainEnemy.transform.position);
 
         gameObject.transform.rotation = Quaternion.Euler(new Vector3(rot.x, rot.y, rotationTarget));
@@ -146,7 +210,7 @@ public class Player : MonoBehaviour
 
         handleMovementStateTransitions(movementKeyPressed, focused, boosting);
         playerValCalc();
-        positionTarget += (newMovementVector * currentMovementSpeed);
+        positionTarget = transform.position + (newMovementVector * currentMovementSpeed);
     }
 
     void handleMovementStateTransitions(bool moveKeyPressed, bool focusHeld, bool boost)

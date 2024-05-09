@@ -1,0 +1,68 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2662172989226403273
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 7931220354255540993}
+  - component: {fileID: 783044098625766388}
+  m_Layer: 0
+  m_Name: InvisibleWeapon
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &7931220354255540993
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2662172989226403273}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: -0, z: 0.7765964, w: -0.62999845}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 0.045124263, y: 0.047456734, z: 0.105919905}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 258.1}
+--- !u!114 &783044098625766388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2662172989226403273}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5aba54d44ce9abb41af3d87f0837fa1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  firingPattern: []
+  firingPatternIndex: 0
+  weaponData: {fileID: 11400000, guid: 94c893ae19d74844ba5005444a983686, type: 2}
+  weaponMountData: {fileID: 11400000, guid: 54671c98adc0490408af6665d5397a7f, type: 2}
+  fireTimer: 0
+  currentAngle: 0
+  targetAngle: 0
+  previousPosition: {x: 0, y: 0, z: 0}
+  targetPosition: {x: 0, y: 0, z: 0}
+  aimTimer: 0
+  moveTimer: 0
+  moveIndex: 0
+  rotationTimer: 0
+  independantRotationIntervalTimer: 0
+  rotationIndex: 0
+  independantRotationIndex: 0
+  rotationDestReached: 0
+  atMovementDestination: 0
+  currentAmmo: 0
+  state: 0
+  fireIndex: 0
+  specialAmmoFireTimer: 0

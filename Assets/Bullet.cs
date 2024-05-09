@@ -13,7 +13,9 @@ public class Bullet : MonoBehaviour
     public float xSpeed;
     public float ySpeed;
     private float offset;
-
+    public float lifeTimer;
+    public float timeBeforeDestruction;
+    public WeaponData thisData;
     public virtual void Die() {
         GameManager.instance.markedForDeathBullets.Add(this);
         thisCollider.enabled = false;
@@ -41,9 +43,19 @@ public class Bullet : MonoBehaviour
         positionTarget = positionCurrent;
 
         gameObject.transform.position = positionCurrent;
+        lifeTimer = 0.0f;
+        timeBeforeDestruction = 0.0f;
     }
-    public void BulletUpdate()
+    public virtual void BulletUpdate()
     {
+        if (timeBeforeDestruction > 0.0f)
+        {
+            lifeTimer += Time.deltaTime;
+            if (lifeTimer > timeBeforeDestruction)
+            {
+                Die();
+            }
+        }
         positionTarget += flight;
         positionCurrent = Vector3.Lerp(
             positionCurrent,
@@ -88,7 +100,7 @@ public class Bullet : MonoBehaviour
         if (col.gameObject.CompareTag("Enemy"))
         {
             Die();
-            //Enemy take damage
+            GameManager.instance.bossHP--;
         }
     }
 

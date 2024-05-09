@@ -1,0 +1,49 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae906cac2d68d1949ba0051856d23be5, type: 3}
+  m_Name: MacgunMount
+  m_EditorClassIdentifier: 
+  mountType: 1
+  d1: Rotating mount. Rotates between each rotationWayPoint at rotationSpeed, moving
+    to the next waypoint at that current rotationInterval
+  clockwise: 010001000101
+  rotationWayPoints:
+  - 90
+  - 270
+  - 90
+  - 180
+  - 180
+  rotationSpeed: 8
+  rotationIntervals:
+  - 0
+  - 0
+  - 0
+  - 0
+  - 2.4
+  rotateToWayPointBeforeTicking: 0
+  d2: Aims at the player. Reads the player's position every targetAcquisitionInterval,
+    moving at targetAcquisitionSpeed to aim at it.
+  targetAcquisitionSpeed: 20
+  targetAcquisitionInterval: 0
+  d3: Movement values for moving mount. Moves to movementwaypoint at movementspeed,
+    pausing for movementInterval after every movement.
+  movementSpeed: 0
+  movementInterval: 0
+  movementWayPoints: []
+  initialPosition: {x: 0, y: -0.45, z: 0}
+  initialFiringAngle: 180
+  weaponsOnMount:
+  - {fileID: 11400000, guid: a9c15033aa041e6468cb59e2b9ead625, type: 2}
+  fireEntirePatternWithAmmo: 0
+  fireAtSpecificIntervals: 1
+  fireIntervals:
+  - 2.4

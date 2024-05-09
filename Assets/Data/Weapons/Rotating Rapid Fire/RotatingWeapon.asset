@@ -1,0 +1,42 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ae906cac2d68d1949ba0051856d23be5, type: 3}
+  m_Name: RotatingWeapon
+  m_EditorClassIdentifier: 
+  mountType: 1
+  d1: Rotating mount. Rotates between each rotationWayPoint at rotationSpeed, moving
+    to the next waypoint at that current rotationInterval
+  clockwise: 0100
+  rotationWayPoints:
+  - 90
+  - 270
+  rotationSpeed: 7
+  rotationIntervals:
+  - 0
+  - 0
+  rotateToWayPointBeforeTicking: 0
+  d2: Aims at the player. Reads the player's position every targetAcquisitionInterval,
+    moving at targetAcquisitionSpeed to aim at it.
+  targetAcquisitionSpeed: 20
+  targetAcquisitionInterval: 3
+  d3: Movement values for moving mount. Moves to movementwaypoint at movementspeed,
+    pausing for movementInterval after every movement.
+  movementSpeed: 0
+  movementInterval: 0
+  movementWayPoints: []
+  initialPosition: {x: 0.5, y: -0.6, z: 0}
+  initialFiringAngle: 0
+  weaponsOnMount:
+  - {fileID: 11400000, guid: 9200e48c2dab6064ba6c35664e023288, type: 2}
+  fireEntirePatternWithAmmo: 0
+  fireAtSpecificIntervals: 0
+  fireIntervals: []

@@ -1,0 +1,32 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 695a3da68a7180946a68c27c600dc4df, type: 3}
+  m_Name: FlakBlast A
+  m_EditorClassIdentifier: 
+  bulletPrefab: {fileID: 4198219691166535025, guid: 562c39f30dca52d45a7235433c344440, type: 3}
+  weaponName: Flak
+  weaponDescription: Blast of small slow bullets
+  weaponID: 0
+  weaponClass: 0
+  bulletSpeed: 0.05
+  fireRate: 0.05
+  fireRateVariance: 0
+  ammo: 2
+  reloadInterval: 2
+  bulletSpread: 30
+  bulletSpreadVariance: 15
+  customBulletSpread: []
+  numBulletsPerShot: 7
+  bulletSize: 0.05
+  bulletLifetime: 0
+  lifetimeVariance: 0
+  dontRespectTrajectory: 0
