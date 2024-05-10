@@ -84,7 +84,7 @@ public class Player : MonoBehaviour
             }
             else
             {
-                Application.Quit(0);
+                GameManager.instance.Lose();
             }
             deathTimer = 0.0f;
             invincible = true;

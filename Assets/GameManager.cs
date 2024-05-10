@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Runtime.CompilerServices;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using Random = UnityEngine.Random;
 
@@ -122,6 +123,16 @@ public class GameManager : MonoBehaviour
     {
         float ang = ((180 / Mathf.PI) * Mathf.Atan2(toLookAt.y - current.y, toLookAt.x - current.x)) - 90;
         return ang < 0 ? 360 + ang : ang;
+    }
+
+    public void Win()
+    {
+        SceneManager.LoadScene(3);
+    }
+
+    public void Lose()
+    {
+        SceneManager.LoadScene(2);
     }
 
 }

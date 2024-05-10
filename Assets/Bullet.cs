@@ -101,6 +101,10 @@ public class Bullet : MonoBehaviour
         {
             Die();
             GameManager.instance.bossHP--;
+            if (GameManager.instance.bossHP < 0)
+            {
+                GameManager.instance.Win();
+            }
         }
     }
 
